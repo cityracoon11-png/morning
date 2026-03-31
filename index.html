@@ -9,6 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
+      /* Background gradasi pink utama */
       background: linear-gradient(to top, #ff9a9e, #fecfef);
       height: 100vh;
       display: flex;
@@ -19,43 +20,64 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.15); /* Transparan agar menyatu dengan background */
       padding: 30px;
       border-radius: 20px;
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       animation: fadeIn 2s ease;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    /* Container khusus untuk beruang agar di tengah */
+    .bear-container {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .bear {
+      width: 150px; /* Ukuran tetap */
+      height: auto;
+      border-radius: 15px;
+      /* Jika GIF punya background putih, baris di bawah ini mencoba menyamarkannya */
+      mix-blend-mode: multiply; 
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 32px;
       margin-bottom: 10px;
     }
 
     p {
       font-size: 18px;
       margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 25px;
       border: none;
-      border-radius: 10px;
+      border-radius: 25px;
       background: white;
-      color: #66a6ff;
+      color: #ff758c;
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     button:hover {
-      background: #f0f0f0;
+      transform: scale(1.05);
+      background: #fff0f0;
     }
 
     .hidden {
       display: none;
       margin-top: 20px;
-      font-size: 16px;
+      animation: fadeIn 1s ease;
     }
 
     @keyframes fadeIn {
@@ -64,19 +86,8 @@
     }
   </style>
 </head>
-<script>
-function showMessage() {
-  document.getElementById("message").style.display = "block";
-
-  const audio = document.getElementById("bgm");
-  if (audio) {
-    audio.play().catch(() => {});
-  }
-}
-</script>
 <body>
 
-<!-- Musik -->
 <audio id="bgm" loop>
   <source src="shake it off.mp3" type="audio/mpeg">
 </audio>
@@ -85,27 +96,33 @@ function showMessage() {
   <h1>Good Morning ☀️</h1>
   <p>hope your day its a good day khubb 🤗</p>
   
-  <button onclick="showMessage()" style="display:flex; align-items:center; gap:8px;">
-  Click this
- <img src="bear.gif" class="bear">
-       
-</button>
+  <div class="bear-container">
+    <img src="bear.gif" class="bear" alt="Bear">
+  </div>
+
+  <button id="btnClick" onclick="showMessage()">Klik ini</button>
 
   <div id="message" class="hidden">
     <p>
       I just wanna say...<br><br>
       Hope your day goes smoothly, don't forget your smile,  
-      and when you're tired... eat good food okay,God Bless You Pretty Chubby Cheeks🤏🏻❤️
+      and when you're tired... eat good food okay, <br>
+      <b>God Bless You Pretty Chubby Cheeks 🤏🏻❤️</b>
     </p>
   </div>
 </div>
 
 <script>
 function showMessage() {
+  // Tampilkan pesan
   document.getElementById("message").style.display = "block";
+  // Sembunyikan tombol setelah diklik
+  document.getElementById("btnClick").style.display = "none";
 
   const audio = document.getElementById("bgm");
-  audio.play().catch(() => {});
+  if (audio) {
+    audio.play().catch(error => console.log("Autoplay dicegah browser, perlu interaksi user."));
+  }
 }
 </script>
 
