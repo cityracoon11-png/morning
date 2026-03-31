@@ -64,7 +64,16 @@
     }
   </style>
 </head>
+<script>
+function showMessage() {
+  document.getElementById("message").style.display = "block";
 
+  const audio = document.getElementById("bgm");
+  if (audio) {
+    audio.play().catch(() => {});
+  }
+}
+</script>
 <body>
 
 <!-- Musik -->
